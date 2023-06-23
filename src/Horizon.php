@@ -186,6 +186,10 @@ class Horizon
      */
     public static function assetsAreCurrent()
     {
+        if(config("horizon.skip_assets_check")) {
+            return true;
+        }
+        
         $publishedPath = public_path('vendor/horizon/mix-manifest.json');
 
         if (! File::exists($publishedPath)) {
